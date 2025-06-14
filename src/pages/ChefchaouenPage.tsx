@@ -170,7 +170,7 @@ const transportCards = [
 const guideCategories = [
   {
     id: 'overview',
-    icon: <Info size={20} />,
+    icon: <Info size={20} className="text-[#DB6551]" />,
     title: 'Overview',
     content: `Chefchaouen, known as the "Blue Pearl of Morocco", is famous for its striking blue-painted buildings 
     and winding alleyways. Founded in 1471, this enchanting city nestled in the Rif Mountains has become 
@@ -178,7 +178,7 @@ const guideCategories = [
   },
   {
     id: 'map',
-    icon: <Map size={20} />,
+    icon: <Map size={20} className="text-[#DB6551]" />,
     title: 'Interactive Map',
     content: {
       type: 'map',
@@ -193,7 +193,7 @@ const guideCategories = [
   },
   {
     id: 'weather',
-    icon: <Sun size={20} />,
+    icon: <Sun size={20} className="text-[#DB6551]" />,
     title: 'Weather',
     content: {
       type: 'weather',
@@ -214,7 +214,7 @@ const guideCategories = [
   },
   {
     id: 'best-time',
-    icon: <Clock size={20} />,
+    icon: <Clock size={20} className="text-[#DB6551]" />,
     title: 'Best Time to Visit',
     content: {
       type: 'seasons',
@@ -244,7 +244,7 @@ const guideCategories = [
   },
   {
     id: 'forum',
-    icon: <MessageSquare size={20} />,
+    icon: <MessageSquare size={20} className="text-[#DB6551]" />,
     title: 'Travel Forum',
     content: {
       type: 'forum',
@@ -310,7 +310,7 @@ const guideCategories = [
   },
   {
     id: 'history',
-    icon: <History size={20} />,
+    icon: <History size={20} className="text-[#DB6551]" />,
     title: 'History',
     content: `The city was founded in 1471 as a small fortress to fight Portuguese invasions. 
     The blue color, which now defines the city, was introduced by Jewish refugees in 1492, 
@@ -319,7 +319,7 @@ const guideCategories = [
   },
   {
     id: 'highlights',
-    icon: <Star size={20} />,
+    icon: <Star size={20} className="text-[#DB6551]" />,
     title: 'Highlights',
     content: `
     • The Medina - A UNESCO World Heritage site with blue-washed buildings
@@ -331,13 +331,13 @@ const guideCategories = [
 ];
 
 const navigationItems = [
-  { type: 'places', icon: <MapPin size={20} />, label: 'Places' },
-  { type: 'activities', icon: <Calendar size={20} />, label: 'Activities' },
-  { type: 'events', icon: <Calendar size={20} />, label: 'Events' },
-  { type: 'hotels', icon: <Hotel size={20} />, label: 'Hotels' },
-  { type: 'products', icon: <ShoppingBag size={20} />, label: 'Products' },
-  { type: 'restaurants', icon: <Utensils size={20} />, label: 'Restaurants' },
-  { type: 'transport', icon: <Car size={20} />, label: 'Transport' }
+  { type: 'places', icon: <MapPin size={20} className="text-[#DB6551]" />, label: 'Places' },
+  { type: 'activities', icon: <Calendar size={20} className="text-[#DB6551]" />, label: 'Activities' },
+  { type: 'events', icon: <Calendar size={20} className="text-[#DB6551]" />, label: 'Events' },
+  { type: 'hotels', icon: <Hotel size={20} className="text-[#DB6551]" />, label: 'Hotels' },
+  { type: 'products', icon: <ShoppingBag size={20} className="text-[#DB6551]" />, label: 'Products' },
+  { type: 'restaurants', icon: <Utensils size={20} className="text-[#DB6551]" />, label: 'Restaurants' },
+  { type: 'transport', icon: <Car size={20} className="text-[#DB6551]" />, label: 'Transport' }
 ];
 
 const ChefchaouenPage: React.FC = () => {
@@ -358,9 +358,9 @@ const ChefchaouenPage: React.FC = () => {
 
     if (typeof category.content === 'string') {
       return (
-        <div className="p-4 bg-white rounded-lg shadow-sm">
-          <h3 className="font-medium text-slate-800 mb-2">{category.title}</h3>
-          <p className="text-sm text-slate-600 whitespace-pre-line">{category.content}</p>
+        <div className="p-6 bg-white rounded-2xl shadow-lg border-2 border-[#E6896B]/20">
+          <h3 className="font-bold text-[#DB6551] mb-4 text-xl">{category.title}</h3>
+          <p className="text-[#E6896B] whitespace-pre-line leading-relaxed">{category.content}</p>
         </div>
       );
     }
@@ -368,26 +368,26 @@ const ChefchaouenPage: React.FC = () => {
     switch (category.content.type) {
       case 'weather':
         return (
-          <div className="p-4 bg-white rounded-lg shadow-sm">
-            <div className="mb-6">
-              <h3 className="font-medium text-slate-800 mb-4">Current Weather</h3>
-              <div className="flex items-center justify-between">
-                <div className="text-3xl font-bold text-slate-700">{category.content.current.temp}°C</div>
-                <div className="text-slate-600">{category.content.current.condition}</div>
+          <div className="p-6 bg-white rounded-2xl shadow-lg border-2 border-[#E6896B]/20">
+            <div className="mb-8">
+              <h3 className="font-bold text-[#DB6551] mb-6 text-xl">Current Weather</h3>
+              <div className="flex items-center justify-between bg-gradient-to-r from-[#E6896B]/10 to-[#DB6551]/10 p-6 rounded-xl">
+                <div className="text-4xl font-bold text-[#DB6551]">{category.content.current.temp}°C</div>
+                <div className="text-[#E6896B] font-semibold text-lg">{category.content.current.condition}</div>
               </div>
-              <div className="mt-2 text-sm text-slate-500">
-                <div>Humidity: {category.content.current.humidity}%</div>
-                <div>Wind: {category.content.current.wind} km/h</div>
+              <div className="mt-4 grid grid-cols-2 gap-4 text-sm text-[#E6896B] font-medium">
+                <div className="bg-[#E6896B]/5 p-3 rounded-lg">Humidity: {category.content.current.humidity}%</div>
+                <div className="bg-[#E6896B]/5 p-3 rounded-lg">Wind: {category.content.current.wind} km/h</div>
               </div>
             </div>
             <div>
-              <h4 className="font-medium text-slate-800 mb-2">5-Day Forecast</h4>
-              <div className="space-y-2">
+              <h4 className="font-bold text-[#DB6551] mb-4 text-lg">5-Day Forecast</h4>
+              <div className="space-y-3">
                 {category.content.forecast.map(day => (
-                  <div key={day.day} className="flex items-center justify-between text-sm">
-                    <span className="text-slate-600">{day.day}</span>
-                    <span className="text-slate-700">{day.high}° / {day.low}°</span>
-                    <span className="text-slate-600">{day.condition}</span>
+                  <div key={day.day} className="flex items-center justify-between text-sm bg-[#E6896B]/5 p-4 rounded-xl">
+                    <span className="text-[#E6896B] font-semibold">{day.day}</span>
+                    <span className="text-[#DB6551] font-bold">{day.high}° / {day.low}°</span>
+                    <span className="text-[#E6896B]">{day.condition}</span>
                   </div>
                 ))}
               </div>
@@ -397,25 +397,25 @@ const ChefchaouenPage: React.FC = () => {
 
       case 'seasons':
         return (
-          <div className="p-4 bg-white rounded-lg shadow-sm">
-            <h3 className="font-medium text-slate-800 mb-4">When to Visit Chefchaouen</h3>
-            <div className="space-y-4">
+          <div className="p-6 bg-white rounded-2xl shadow-lg border-2 border-[#E6896B]/20">
+            <h3 className="font-bold text-[#DB6551] mb-6 text-xl">When to Visit Chefchaouen</h3>
+            <div className="space-y-6">
               {category.content.recommendations.map(season => (
-                <div key={season.season} className="border-b border-slate-200 pb-4 last:border-0">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-medium text-slate-700">{season.season}</h4>
+                <div key={season.season} className="border-b-2 border-[#E6896B]/20 pb-6 last:border-0">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="font-bold text-[#DB6551] text-lg">{season.season}</h4>
                     <div className="flex">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star
                           key={i}
-                          size={16}
-                          className={i < season.rating ? 'text-yellow-400' : 'text-slate-300'}
+                          size={18}
+                          className={i < season.rating ? 'text-[#DB6551]' : 'text-[#E6896B]/30'}
                           fill={i < season.rating ? 'currentColor' : 'none'}
                         />
                       ))}
                     </div>
                   </div>
-                  <p className="text-sm text-slate-600">{season.description}</p>
+                  <p className="text-[#E6896B] leading-relaxed">{season.description}</p>
                 </div>
               ))}
             </div>
@@ -424,71 +424,71 @@ const ChefchaouenPage: React.FC = () => {
 
       case 'forum':
         return (
-          <div className="p-4 bg-white rounded-lg shadow-sm">
-            <div className="mb-6 flex justify-between items-center">
-              <h3 className="font-medium text-slate-800">Recent Questions</h3>
-              <button className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+          <div className="p-6 bg-white rounded-2xl shadow-lg border-2 border-[#E6896B]/20">
+            <div className="mb-8 flex justify-between items-center">
+              <h3 className="font-bold text-[#DB6551] text-xl">Recent Questions</h3>
+              <button className="px-6 py-3 bg-gradient-to-r from-[#DB6551] to-[#E6896B] text-white rounded-full hover:from-[#E6896B] hover:to-[#DB6551] transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:scale-105">
                 Ask Question
               </button>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-8">
               {category.content.topics.map(topic => (
-                <div key={topic.id} className="border-b border-slate-200 pb-6 last:border-0">
-                  <div className="flex items-start gap-3 mb-3">
+                <div key={topic.id} className="border-b-2 border-[#E6896B]/20 pb-8 last:border-0">
+                  <div className="flex items-start gap-4 mb-4">
                     <img 
                       src={topic.author.avatar} 
                       alt={topic.author.name}
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="w-12 h-12 rounded-full object-cover border-2 border-[#E6896B]/20"
                     />
                     <div>
-                      <h4 className="font-medium text-slate-900">{topic.author.name}</h4>
-                      <p className="text-xs text-slate-500">{topic.author.credentials}</p>
+                      <h4 className="font-bold text-[#DB6551]">{topic.author.name}</h4>
+                      <p className="text-xs text-[#E6896B] font-medium">{topic.author.credentials}</p>
                     </div>
                   </div>
-                  <h3 className="text-lg font-medium text-slate-900 mb-2">{topic.title}</h3>
-                  <p className="text-slate-600 mb-4">{topic.content}</p>
-                  <div className="flex items-center gap-6 mb-6">
-                    <button className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
+                  <h3 className="text-lg font-bold text-[#DB6551] mb-3">{topic.title}</h3>
+                  <p className="text-[#E6896B] mb-6 leading-relaxed">{topic.content}</p>
+                  <div className="flex items-center gap-8 mb-8">
+                    <button className="flex items-center gap-2 text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300">
                       <ThumbsUp size={18} />
-                      <span>{topic.upvotes}</span>
+                      <span className="font-semibold">{topic.upvotes}</span>
                     </button>
-                    <button className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
+                    <button className="flex items-center gap-2 text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300">
                       <MessageCircle size={18} />
-                      <span>{topic.comments}</span>
+                      <span className="font-semibold">{topic.comments}</span>
                     </button>
-                    <button className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
+                    <button className="flex items-center gap-2 text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300">
                       <Share2 size={18} />
-                      <span>{topic.shares}</span>
+                      <span className="font-semibold">{topic.shares}</span>
                     </button>
-                    <button className="ml-auto text-slate-400 hover:text-slate-600">
+                    <button className="ml-auto text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300">
                       <MoreHorizontal size={18} />
                     </button>
                   </div>
                   
                   {topic.answers.map(answer => (
-                    <div key={answer.id} className="bg-slate-50 rounded-lg p-4 ml-6">
-                      <div className="flex items-start gap-3 mb-3">
+                    <div key={answer.id} className="bg-gradient-to-r from-[#E6896B]/5 to-[#DB6551]/5 rounded-2xl p-6 ml-8 border-2 border-[#E6896B]/10">
+                      <div className="flex items-start gap-3 mb-4">
                         <img 
                           src={answer.author.avatar} 
                           alt={answer.author.name}
-                          className="w-8 h-8 rounded-full object-cover"
+                          className="w-10 h-10 rounded-full object-cover border-2 border-[#E6896B]/20"
                         />
                         <div>
-                          <h5 className="font-medium text-slate-900">{answer.author.name}</h5>
-                          <p className="text-xs text-slate-500">{answer.author.credentials}</p>
+                          <h5 className="font-bold text-[#DB6551]">{answer.author.name}</h5>
+                          <p className="text-xs text-[#E6896B] font-medium">{answer.author.credentials}</p>
                         </div>
                       </div>
-                      <p className="text-slate-600 whitespace-pre-line">{answer.content}</p>
-                      <div className="flex items-center gap-6 mt-4">
-                        <button className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
+                      <p className="text-[#E6896B] whitespace-pre-line mb-4 leading-relaxed">{answer.content}</p>
+                      <div className="flex items-center gap-6">
+                        <button className="flex items-center gap-2 text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300">
                           <ThumbsUp size={16} />
-                          <span>{answer.upvotes}</span>
+                          <span className="font-semibold">{answer.upvotes}</span>
                         </button>
-                        <button className="flex items-center gap-2 text-slate-600 hover:text-blue-600">
+                        <button className="flex items-center gap-2 text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300">
                           <MessageCircle size={16} />
-                          <span>{answer.comments}</span>
+                          <span className="font-semibold">{answer.comments}</span>
                         </button>
-                        <span className="text-sm text-slate-400">{answer.timestamp}</span>
+                        <span className="text-sm text-[#E6896B]/70 font-medium">{answer.timestamp}</span>
                       </div>
                     </div>
                   ))}
@@ -500,17 +500,17 @@ const ChefchaouenPage: React.FC = () => {
 
       case 'map':
         return (
-          <div className="p-4 bg-white rounded-lg shadow-sm">
-            <h3 className="font-medium text-slate-800 mb-4">Interactive Map</h3>
-            <div className="bg-slate-100 h-[400px] rounded-lg flex items-center justify-center">
-              <p className="text-slate-600">Map integration will be implemented here</p>
+          <div className="p-6 bg-white rounded-2xl shadow-lg border-2 border-[#E6896B]/20">
+            <h3 className="font-bold text-[#DB6551] mb-6 text-xl">Interactive Map</h3>
+            <div className="bg-gradient-to-br from-[#E6896B]/10 to-[#DB6551]/10 h-[400px] rounded-2xl flex items-center justify-center border-2 border-[#E6896B]/20">
+              <p className="text-[#DB6551] font-semibold text-lg">Map integration will be implemented here</p>
             </div>
-            <div className="mt-4 space-y-2">
+            <div className="mt-6 space-y-3">
               {category.content.markers.map(marker => (
-                <div key={marker.title} className="flex items-center gap-2 text-sm">
-                  <MapPin size={16} className="text-blue-600" />
-                  <span className="font-medium text-slate-700">{marker.title}</span>
-                  <span className="text-slate-500">- {marker.description}</span>
+                <div key={marker.title} className="flex items-center gap-3 text-sm bg-[#E6896B]/5 p-4 rounded-xl">
+                  <MapPin size={18} className="text-[#DB6551]" />
+                  <span className="font-bold text-[#DB6551]">{marker.title}</span>
+                  <span className="text-[#E6896B]">- {marker.description}</span>
                 </div>
               ))}
             </div>
@@ -522,7 +522,7 @@ const ChefchaouenPage: React.FC = () => {
   const renderContent = () => {
     if (selectedContent === 'slideshow') {
       return (
-        <div className="p-6">
+        <div className="p-8">
           {renderGuideContent()}
         </div>
       );
@@ -550,37 +550,38 @@ const ChefchaouenPage: React.FC = () => {
     }
 
     return (
-      <div className="p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="p-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cards.map((card) => (
-            <div key={card.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-              <div className="relative h-48">
+            <div key={card.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 border-2 border-[#E6896B]/20 hover:border-[#DB6551]/40">
+              <div className="relative h-56">
                 <img
                   src={card.image}
                   alt={card.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                  <h3 className="text-white font-semibold text-lg">{card.name}</h3>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="text-white font-bold text-xl mb-1 drop-shadow-lg">{card.name}</h3>
                   {'rating' in card && (
                     <div className="flex items-center text-white/90">
-                      <Star size={16} className="fill-current text-yellow-400" />
-                      <span className="ml-1">{card.rating}</span>
+                      <Star size={16} className="fill-current text-[#DB6551]" />
+                      <span className="ml-1 font-semibold">{card.rating}</span>
                       <span className="mx-1">·</span>
-                      <span>{card.reviews} reviews</span>
+                      <span className="font-medium">{card.reviews} reviews</span>
                     </div>
                   )}
                 </div>
               </div>
-              <div className="p-4">
-                <p className="text-slate-600 text-sm mb-3">
+              <div className="p-6">
+                <p className="text-[#E6896B] text-sm mb-4 leading-relaxed">
                   {card.description}
                 </p>
-                <div className="flex flex-wrap gap-2 mb-3">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {card.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800"
+                      className="text-xs px-3 py-1.5 rounded-full bg-[#E6896B]/10 text-[#DB6551] font-semibold border border-[#E6896B]/20"
                     >
                       {tag}
                     </span>
@@ -588,16 +589,16 @@ const ChefchaouenPage: React.FC = () => {
                 </div>
                 <div className="flex items-center justify-between text-sm">
                   {'price' in card && (
-                    <span className="text-slate-700 font-medium">{card.price}</span>
+                    <span className="text-[#DB6551] font-bold text-lg">{card.price}</span>
                   )}
                   {'priceRange' in card && (
-                    <span className="text-slate-700 font-medium">{card.priceRange}</span>
+                    <span className="text-[#DB6551] font-bold text-lg">{card.priceRange}</span>
                   )}
                   {'duration' in card && (
-                    <span className="text-slate-600">{card.duration}</span>
+                    <span className="text-[#E6896B] font-semibold">{card.duration}</span>
                   )}
                   {'artisan' in card && (
-                    <span className="text-slate-600 text-xs">{card.artisan}</span>
+                    <span className="text-[#E6896B] text-xs font-medium">{card.artisan}</span>
                   )}
                 </div>
               </div>
@@ -609,14 +610,14 @@ const ChefchaouenPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
+    <div className="min-h-screen bg-white flex">
       {/* Guide Sidebar - Always visible */}
-      <div className="w-80 bg-white border-r border-slate-200 overflow-y-auto">
-        <div className="p-6">
-          <h1 className="text-2xl font-bold text-slate-800 mb-1">Chefchaouen</h1>
-          <p className="text-slate-500 text-sm mb-6">The Blue Pearl of Morocco</p>
+      <div className="w-80 bg-white border-r-2 border-[#E6896B]/20 overflow-y-auto">
+        <div className="p-8">
+          <h1 className="text-3xl font-bold text-[#DB6551] mb-2 drop-shadow-sm">Chefchaouen</h1>
+          <p className="text-[#E6896B] text-sm mb-8 font-medium">The Blue Pearl of Morocco</p>
           
-          <div className="space-y-2">
+          <div className="space-y-3">
             {guideCategories.map(category => (
               <button
                 key={category.id}
@@ -624,15 +625,15 @@ const ChefchaouenPage: React.FC = () => {
                   setSelectedGuideCategory(category.id);
                   setSelectedContent('slideshow');
                 }}
-                className={`w-full text-left px-4 py-3 rounded-lg transition-colors ${
+                className={`w-full text-left px-6 py-4 rounded-xl transition-all duration-300 ${
                   selectedGuideCategory === category.id && selectedContent === 'slideshow'
-                    ? 'bg-blue-50 text-blue-700'
-                    : 'hover:bg-slate-50 text-slate-700'
+                    ? 'bg-gradient-to-r from-[#DB6551]/10 to-[#E6896B]/10 text-[#DB6551] border-2 border-[#DB6551]/30 shadow-lg'
+                    : 'hover:bg-[#E6896B]/5 text-[#E6896B] hover:text-[#DB6551] border-2 border-transparent hover:border-[#E6896B]/20'
                 }`}
               >
                 <div className="flex items-center">
-                  <span className="mr-3">{category.icon}</span>
-                  <span>{category.title}</span>
+                  <span className="mr-4">{category.icon}</span>
+                  <span className="font-semibold">{category.title}</span>
                 </div>
               </button>
             ))}
@@ -643,17 +644,17 @@ const ChefchaouenPage: React.FC = () => {
       {/* Main Content */}
       <div className="flex-1">
         {/* Navigation */}
-        <div className="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div className="bg-white border-b-2 border-[#E6896B]/20 sticky top-0 z-10 shadow-sm">
           <div className="container mx-auto px-4">
             <nav className="flex justify-center">
               {navigationItems.map(({ type, icon, label }) => (
                 <button
                   key={type}
                   onClick={() => setSelectedContent(type as typeof selectedContent)}
-                  className={`px-6 py-4 flex items-center gap-2 transition-colors ${
+                  className={`px-8 py-6 flex items-center gap-3 transition-all duration-300 font-semibold ${
                     selectedContent === type
-                      ? 'text-blue-600 border-b-2 border-blue-600'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'text-[#DB6551] border-b-4 border-[#DB6551] bg-[#DB6551]/5'
+                      : 'text-[#E6896B] hover:text-[#DB6551] hover:bg-[#E6896B]/5'
                   }`}
                 >
                   {icon}
@@ -667,7 +668,7 @@ const ChefchaouenPage: React.FC = () => {
         {/* Content Area */}
         <div>
           {/* Slideshow - Always visible */}
-          <div className="relative h-[300px] overflow-hidden">
+          <div className="relative h-[350px] overflow-hidden">
             {images.map((image, index) => (
               <div
                 key={index}
@@ -680,18 +681,18 @@ const ChefchaouenPage: React.FC = () => {
                   alt="Chefchaouen"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
               </div>
             ))}
             
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3">
               {images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentImageIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentImageIndex 
-                      ? 'bg-white w-4' 
+                      ? 'bg-[#DB6551] w-8 shadow-lg' 
                       : 'bg-white/50 hover:bg-white/75'
                   }`}
                 />

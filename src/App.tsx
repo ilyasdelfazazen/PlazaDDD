@@ -64,34 +64,34 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col">
+      <div className="min-h-screen bg-white flex flex-col">
         {/* Top Bar */}
-        <div className="bg-white border-b border-slate-200">
+        <div className="bg-white border-b-2 border-[#E6896B] shadow-sm">
           <div className="container mx-auto px-4">
             <div className="h-16 flex items-center justify-between gap-8">
               {/* Left section */}
               <div className="flex items-center gap-6">
                 <button
                   onClick={() => setIsSidebarOpen(true)}
-                  className="p-2 rounded-md hover:bg-slate-50 transition-colors"
+                  className="p-2 rounded-lg hover:bg-[#E6896B]/10 transition-all duration-300 hover:scale-105"
                 >
-                  <Activity size={22} className="text-slate-700" />
+                  <Activity size={22} className="text-[#DB6551]" />
                 </button>
               </div>
 
               {/* Center section */}
-              <Link to="/" className="flex items-center">
-                <span className="text-2xl font-bold text-blue-600">Place</span>
-                <span className="text-2xl font-bold text-slate-800">2</span>
+              <Link to="/" className="flex items-center hover:scale-105 transition-transform duration-300">
+                <span className="text-3xl font-bold text-[#DB6551] drop-shadow-sm">Place</span>
+                <span className="text-3xl font-bold text-[#E6896B] drop-shadow-sm">2</span>
               </Link>
 
               {/* Right section */}
               <div className="flex items-center gap-6">
                 <button
                   onClick={() => setIsPlacesSidebarOpen(true)}
-                  className="p-2 rounded-md hover:bg-slate-50 transition-colors"
+                  className="p-2 rounded-lg hover:bg-[#E6896B]/10 transition-all duration-300 hover:scale-105"
                 >
-                  <MapPin size={22} className="text-slate-700" />
+                  <MapPin size={22} className="text-[#DB6551]" />
                 </button>
               </div>
             </div>
@@ -102,23 +102,23 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <div className="bg-white border-b border-slate-200 shadow-sm">
+              <div className="bg-white border-b border-[#E6896B]/30 shadow-sm">
                 <div className="container mx-auto">
                   <nav className="flex justify-center">
                     {Object.entries(navItems).map(([key, { title, icon, items }]) => (
                       <div key={key} className="relative group">
-                        <button className="px-6 py-4 text-slate-700 hover:text-blue-600 flex items-center gap-2">
-                          {icon}
+                        <button className="px-6 py-4 text-[#E6896B] hover:text-[#DB6551] flex items-center gap-2 font-medium transition-all duration-300 hover:bg-[#E6896B]/5 rounded-lg">
+                          <span className="text-[#DB6551]">{icon}</span>
                           {title}
-                          <ChevronDown size={16} />
+                          <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300" />
                         </button>
-                        <div className="absolute left-0 top-full bg-white border border-slate-200 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-[200px] z-50">
-                          <div className="py-2">
+                        <div className="absolute left-0 top-full bg-white border-2 border-[#E6896B]/20 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 min-w-[200px] z-50 transform translate-y-2 group-hover:translate-y-0">
+                          <div className="py-3">
                             {items.map((item, index) => (
                               <a
                                 key={index}
                                 href="#"
-                                className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 hover:text-blue-600"
+                                className="block px-4 py-3 text-sm text-[#E6896B] hover:bg-[#E6896B]/10 hover:text-[#DB6551] transition-all duration-200 font-medium"
                               >
                                 {item}
                               </a>
@@ -132,12 +132,12 @@ function App() {
               </div>
 
               {/* Search Area - Only show on home page */}
-              <div className="container mx-auto px-4 flex justify-center">
-                <div className="max-w-4xl w-full flex items-center gap-2 py-3">
+              <div className="container mx-auto px-4 flex justify-center bg-gradient-to-r from-[#E6896B]/5 to-white py-6">
+                <div className="max-w-4xl w-full flex items-center gap-3">
                   <select
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="w-40 px-2 py-1.5 bg-white border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-slate-700 text-sm"
+                    className="w-40 px-3 py-2.5 bg-white border-2 border-[#E6896B]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#DB6551] focus:border-[#DB6551] text-[#E6896B] text-sm font-medium shadow-sm transition-all duration-300"
                   >
                     {categories.map((category) => (
                       <option key={category.value} value={category.value}>
@@ -146,13 +146,13 @@ function App() {
                     ))}
                   </select>
                   <div className="flex-1 relative">
-                    <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-slate-400" size={18} />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#E6896B]" size={20} />
                     <input
                       type="text"
                       placeholder={`Search in ${selectedCategory === 'all' ? 'all categories' : selectedCategory}...`}
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-9 pr-4 py-1.5 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
+                      className="w-full pl-11 pr-4 py-2.5 border-2 border-[#E6896B]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#DB6551] focus:border-[#DB6551] text-sm shadow-sm transition-all duration-300 placeholder-[#E6896B]/60"
                     />
                   </div>
                 </div>
@@ -171,7 +171,7 @@ function App() {
           onClose={() => setIsPlacesSidebarOpen(false)}
         />
 
-        <main className="flex-1">
+        <main className="flex-1 bg-white">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/africa/morocco/chefchaouen" element={<ChefchaouenPage />} />
@@ -179,17 +179,17 @@ function App() {
           </Routes>
         </main>
 
-        <footer className="bg-white border-t border-slate-200 py-4 px-6">
-          <div className="container mx-auto flex items-center justify-between text-sm text-slate-500">
-            <div className="flex items-center gap-2">
-              <Globe size={18} />
-              <span>Place2 © 2025</span>
+        <footer className="bg-white border-t-2 border-[#E6896B] py-6 px-6">
+          <div className="container mx-auto flex items-center justify-between text-sm">
+            <div className="flex items-center gap-3">
+              <Globe size={20} className="text-[#DB6551]" />
+              <span className="text-[#DB6551] font-bold">Place2 © 2025</span>
             </div>
-            <div className="flex gap-6">
-              <Link to="/chatbot" className="hover:text-blue-600 transition-colors">Chatbot</Link>
-              <a href="#" className="hover:text-blue-600 transition-colors">About</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Privacy</a>
-              <a href="#" className="hover:text-blue-600 transition-colors">Terms</a>
+            <div className="flex gap-8">
+              <Link to="/chatbot" className="text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300 font-medium">Chatbot</Link>
+              <a href="#" className="text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300 font-medium">About</a>
+              <a href="#" className="text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300 font-medium">Privacy</a>
+              <a href="#" className="text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300 font-medium">Terms</a>
             </div>
           </div>
         </footer>

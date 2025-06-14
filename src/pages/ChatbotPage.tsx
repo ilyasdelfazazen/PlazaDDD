@@ -30,35 +30,35 @@ const agents: Agent[] = [
     name: 'Mark',
     avatar: 'https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-6.jpg',
     abilities: ['Event Planning', 'Activity Recommendations', 'Schedule Management'],
-    color: 'blue'
+    color: 'DB6551'
   },
   {
     id: 'athena',
     name: 'Athena',
     avatar: 'https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-5.jpg',
     abilities: ['Real Estate/Investment', 'Property Analysis', 'Market Insights'],
-    color: 'purple'
+    color: 'E6896B'
   },
   {
     id: 'nova',
     name: 'Nova',
     avatar: 'https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-7.jpg',
     abilities: ['Booking and Logistics', 'Travel Planning', 'Transportation'],
-    color: 'green'
+    color: 'DB6551'
   },
   {
     id: 'atlas',
     name: 'Atlas',
     avatar: 'https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-3.jpg',
     abilities: ['Place Discovery', 'Local Recommendations', 'Cultural Insights'],
-    color: 'orange'
+    color: 'E6896B'
   },
   {
     id: 'luna',
     name: 'Luna',
     avatar: 'https://images.generated.photos/kMohesO15iKpSK0r-wuXxmHwFh9Msw0CmBdStJsslGQ/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDU4MzMxLmpwZw.jpg',
     abilities: ['Entertainment Guide', 'Activity Matching', 'Social Planning'],
-    color: 'pink'
+    color: 'DB6551'
   }
 ];
 
@@ -303,13 +303,13 @@ const ChatbotPage: React.FC = () => {
       setExpandedAgent(agent.id);
       setSelectedAgent(agent);
       setSelectedAbility(null);
-      setChatbotTopic(null); // Clear topic when selecting agent
+      setChatbotTopic(null);
     }
   };
 
   const handleAbilityClick = (ability: string) => {
     setSelectedAbility(ability);
-    setChatbotTopic(null); // Clear topic when selecting ability
+    setChatbotTopic(null);
   };
 
   const handleTopicClick = (topic: string) => {
@@ -323,7 +323,6 @@ const ChatbotPage: React.FC = () => {
     setSelectedAbility(null);
     setExpandedAgent(null);
     
-    // Add a welcome message for the topic
     const welcomeMessage: Message = {
       id: Date.now().toString(),
       text: `I'm now ready to help you with questions about ${topic}. Feel free to ask me anything that wasn't covered in the FAQ section!`,
@@ -340,10 +339,10 @@ const ChatbotPage: React.FC = () => {
   const renderFAQContent = () => {
     if (!selectedTopic || !topicFAQs[selectedTopic]) {
       return (
-        <div className="p-6 text-center">
-          <HelpCircle size={48} className="mx-auto text-slate-300 mb-4" />
-          <h3 className="text-lg font-medium text-slate-500 mb-2">No FAQs Available</h3>
-          <p className="text-slate-400">Select a topic to view frequently asked questions.</p>
+        <div className="p-8 text-center">
+          <HelpCircle size={48} className="mx-auto text-[#E6896B]/40 mb-4" />
+          <h3 className="text-xl font-bold text-[#DB6551] mb-2">No FAQs Available</h3>
+          <p className="text-[#E6896B] font-medium">Select a topic to view frequently asked questions.</p>
         </div>
       );
     }
@@ -352,57 +351,57 @@ const ChatbotPage: React.FC = () => {
     const categories = [...new Set(faqs.map(faq => faq.category))];
 
     return (
-      <div className="p-4">
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-4">
+      <div className="p-6">
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
             <div>
-              <h3 className="text-xl font-semibold text-slate-800 mb-2">
+              <h3 className="text-2xl font-bold text-[#DB6551] mb-3">
                 {selectedTopic} - Frequently Asked Questions
               </h3>
-              <p className="text-slate-600 text-sm">
+              <p className="text-[#E6896B] font-medium">
                 Find answers to common questions about {selectedTopic.toLowerCase()}.
               </p>
             </div>
             <button
               onClick={() => handleChatbotTopicClick(selectedTopic)}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#DB6551] to-[#E6896B] text-white rounded-xl hover:from-[#E6896B] hover:to-[#DB6551] transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
             >
-              <Bot size={18} />
+              <Bot size={20} />
               <span>Ask Chatbot</span>
             </button>
           </div>
         </div>
 
         {categories.map(category => (
-          <div key={category} className="mb-8">
-            <h4 className="text-lg font-medium text-slate-700 mb-4 border-b border-slate-200 pb-2">
+          <div key={category} className="mb-10">
+            <h4 className="text-xl font-bold text-[#DB6551] mb-6 border-b-2 border-[#E6896B]/20 pb-3">
               {category}
             </h4>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {faqs
                 .filter(faq => faq.category === category)
                 .map(faq => (
-                  <div key={faq.id} className="border border-slate-200 rounded-lg overflow-hidden">
+                  <div key={faq.id} className="border-2 border-[#E6896B]/20 rounded-2xl overflow-hidden hover:border-[#DB6551]/40 transition-all duration-300">
                     <button
                       onClick={() => toggleFAQ(faq.id)}
-                      className="w-full px-4 py-3 text-left bg-white hover:bg-slate-50 transition-colors flex items-center justify-between"
+                      className="w-full px-6 py-4 text-left bg-white hover:bg-[#E6896B]/5 transition-all duration-300 flex items-center justify-between"
                     >
-                      <span className="font-medium text-slate-800 pr-4">{faq.question}</span>
+                      <span className="font-bold text-[#DB6551] pr-4 text-lg">{faq.question}</span>
                       {expandedFAQ === faq.id ? (
-                        <ChevronUp size={20} className="text-slate-500 flex-shrink-0" />
+                        <ChevronUp size={24} className="text-[#E6896B] flex-shrink-0" />
                       ) : (
-                        <ChevronDown size={20} className="text-slate-500 flex-shrink-0" />
+                        <ChevronDown size={24} className="text-[#E6896B] flex-shrink-0" />
                       )}
                     </button>
                     {expandedFAQ === faq.id && (
-                      <div className="px-4 py-3 bg-slate-50 border-t border-slate-200">
-                        <p className="text-slate-700 mb-3">{faq.answer}</p>
+                      <div className="px-6 py-4 bg-gradient-to-r from-[#E6896B]/5 to-[#DB6551]/5 border-t-2 border-[#E6896B]/20">
+                        <p className="text-[#E6896B] mb-4 leading-relaxed font-medium">{faq.answer}</p>
                         <div className="flex items-center justify-between">
-                          <button className="flex items-center gap-2 text-sm text-slate-600 hover:text-blue-600 transition-colors">
-                            <ThumbsUp size={16} />
+                          <button className="flex items-center gap-2 text-sm text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300 font-semibold">
+                            <ThumbsUp size={18} />
                             <span>Helpful ({faq.helpful})</span>
                           </button>
-                          <span className="text-xs text-slate-500">
+                          <span className="text-xs text-[#E6896B]/70 font-medium">
                             Category: {faq.category}
                           </span>
                         </div>
@@ -418,47 +417,47 @@ const ChatbotPage: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex overflow-hidden">
+    <div className="h-screen flex overflow-hidden bg-white">
       {/* Left Sidebar - AI Agents */}
-      <div className={`bg-white border-r border-slate-200 flex flex-col py-6 transition-all duration-300 ${
+      <div className={`bg-white border-r-2 border-[#E6896B]/20 flex flex-col py-8 transition-all duration-300 ${
         isTopicExpanded ? 'w-48' : 'w-64'
       }`}>
-        <h2 className="px-6 text-lg font-semibold text-slate-800 mb-4">AI Agents</h2>
-        <div className="space-y-1 px-4 overflow-y-auto">
+        <h2 className="px-6 text-xl font-bold text-[#DB6551] mb-6">AI Agents</h2>
+        <div className="space-y-2 px-4 overflow-y-auto">
           {agents.map(agent => (
             <div key={agent.id}>
               <button
                 onClick={() => handleAgentClick(agent)}
-                className={`w-full p-3 rounded-lg flex items-center gap-3 transition-colors ${
+                className={`w-full p-4 rounded-xl flex items-center gap-4 transition-all duration-300 border-2 ${
                   selectedAgent?.id === agent.id 
-                    ? `bg-${agent.color}-50 text-${agent.color}-700` 
-                    : 'hover:bg-slate-50 text-slate-700'
+                    ? `bg-[#${agent.color}]/10 text-[#${agent.color}] border-[#${agent.color}]/30` 
+                    : 'hover:bg-[#E6896B]/5 text-[#E6896B] border-transparent hover:border-[#E6896B]/20'
                 }`}
               >
                 <img 
                   src={agent.avatar} 
                   alt={agent.name}
-                  className="w-8 h-8 rounded-full object-cover"
+                  className="w-10 h-10 rounded-full object-cover border-2 border-[#E6896B]/20"
                 />
                 <div className="flex-1 text-left">
-                  <div className="font-medium">{agent.name}</div>
+                  <div className="font-bold">{agent.name}</div>
                 </div>
                 <ChevronRight 
-                  size={18} 
-                  className={`transition-transform ${expandedAgent === agent.id ? 'rotate-90' : ''}`}
+                  size={20} 
+                  className={`transition-transform duration-300 ${expandedAgent === agent.id ? 'rotate-90' : ''}`}
                 />
               </button>
               
               {expandedAgent === agent.id && (
-                <div className="ml-11 mt-1 space-y-1">
+                <div className="ml-14 mt-2 space-y-2">
                   {agent.abilities.map((ability) => (
                     <button
                       key={ability}
                       onClick={() => handleAbilityClick(ability)}
-                      className={`w-full text-left px-4 py-2 rounded-md text-sm transition-colors ${
+                      className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all duration-300 font-medium border-2 ${
                         selectedAbility === ability
-                          ? `bg-${agent.color}-100 text-${agent.color}-700`
-                          : 'hover:bg-slate-50 text-slate-600'
+                          ? `bg-[#DB6551]/10 text-[#DB6551] border-[#DB6551]/30`
+                          : 'hover:bg-[#E6896B]/5 text-[#E6896B] border-transparent hover:border-[#E6896B]/20'
                       }`}
                     >
                       {ability}
@@ -476,13 +475,13 @@ const ChatbotPage: React.FC = () => {
         isTopicExpanded ? 'w-[25%]' : 'w-[60%]'
       }`}>
         {/* Chat Header */}
-        <div className="h-16 bg-white border-b border-slate-200 flex items-center px-6">
+        <div className="h-20 bg-white border-b-2 border-[#E6896B]/20 flex items-center px-8">
           {chatbotTopic ? (
             <div className="flex items-center">
-              <Bot size={24} className="text-blue-600 mr-3" />
+              <Bot size={28} className="text-[#DB6551] mr-4" />
               <div>
-                <div className="font-medium text-slate-800">Topic Assistant</div>
-                <div className="text-sm text-slate-500">Helping with {chatbotTopic}</div>
+                <div className="font-bold text-[#DB6551] text-lg">Topic Assistant</div>
+                <div className="text-sm text-[#E6896B] font-medium">Helping with {chatbotTopic}</div>
               </div>
             </div>
           ) : selectedAgent ? (
@@ -490,42 +489,47 @@ const ChatbotPage: React.FC = () => {
               <img 
                 src={selectedAgent.avatar} 
                 alt={selectedAgent.name}
-                className="w-8 h-8 rounded-full object-cover mr-3"
+                className="w-10 h-10 rounded-full object-cover mr-4 border-2 border-[#E6896B]/20"
               />
               <div>
-                <div className="font-medium text-slate-800">{selectedAgent.name}</div>
+                <div className="font-bold text-[#DB6551] text-lg">{selectedAgent.name}</div>
                 {selectedAbility && (
-                  <div className="text-sm text-slate-500">{selectedAbility}</div>
+                  <div className="text-sm text-[#E6896B] font-medium">{selectedAbility}</div>
                 )}
               </div>
             </div>
           ) : (
-            <span className="text-slate-500">Select an AI agent or use topic chatbot</span>
+            <span className="text-[#E6896B] font-semibold text-lg">Select an AI agent or use topic chatbot</span>
           )}
         </div>
 
-        {/* Chat Messages - Adjusted height to leave space for input */}
-        <div className="overflow-y-auto p-6 space-y-4" style={{ height: 'calc(100vh - 180px)' }}>
+        {/* Chat Messages */}
+        <div className="overflow-y-auto p-8 space-y-6 bg-gradient-to-b from-white to-[#E6896B]/5" style={{ height: 'calc(100vh - 200px)' }}>
           {messages.map(message => (
             <div
               key={message.id}
               className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               <div
-                className={`max-w-[70%] rounded-lg px-4 py-2 ${
+                className={`max-w-[70%] rounded-2xl px-6 py-4 shadow-lg ${
                   message.sender === 'user'
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-slate-800 border border-slate-200'
+                    ? 'bg-[#DB6551] text-white'
+                    : 'bg-white text-[#E6896B] border-2 border-[#E6896B]/20'
                 }`}
               >
-                {message.text}
+                <p className="font-medium">{message.text}</p>
+                <p className={`text-xs mt-2 ${
+                  message.sender === 'user' ? 'text-white/70' : 'text-[#E6896B]/70'
+                }`}>
+                  {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Chat Input - Fixed at bottom with proper height */}
-        <div className="bg-white border-t border-slate-200 p-4 h-20 flex items-center">
+        {/* Chat Input */}
+        <div className="bg-white border-t-2 border-[#E6896B]/20 p-6 h-24 flex items-center">
           <div className="flex items-center gap-4 w-full">
             <input
               type="text"
@@ -533,11 +537,11 @@ const ChatbotPage: React.FC = () => {
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder={chatbotTopic ? `Ask about ${chatbotTopic}...` : "Type your message..."}
-              className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="flex-1 px-6 py-3 border-2 border-[#E6896B]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#DB6551] focus:border-[#DB6551] font-medium placeholder-[#E6896B]/60 transition-all duration-300"
             />
             <button
               onClick={handleSendMessage}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="px-6 py-3 bg-[#DB6551] text-white rounded-xl hover:bg-[#E6896B] transition-all duration-300 font-bold shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               <Send size={20} />
             </button>
@@ -546,18 +550,18 @@ const ChatbotPage: React.FC = () => {
       </div>
 
       {/* Right Section - Topics */}
-      <div className={`bg-white border-l border-slate-200 flex flex-col transition-all duration-300 ${
+      <div className={`bg-white border-l-2 border-[#E6896B]/20 flex flex-col transition-all duration-300 ${
         isTopicExpanded ? 'w-[60%]' : 'w-24'
       }`}>
-        <div className="p-4 border-b border-slate-200 flex justify-between items-center">
-          <h3 className={`font-medium text-slate-800 ${!isTopicExpanded && 'sr-only'}`}>
+        <div className="p-6 border-b-2 border-[#E6896B]/20 flex justify-between items-center">
+          <h3 className={`font-bold text-[#DB6551] text-xl ${!isTopicExpanded && 'sr-only'}`}>
             {selectedTopic || 'Topics'}
           </h3>
           <button
             onClick={() => setIsTopicExpanded(!isTopicExpanded)}
-            className="p-2 hover:bg-slate-100 rounded-full"
+            className="p-3 hover:bg-[#E6896B]/10 rounded-full transition-all duration-300 hover:scale-110"
           >
-            {isTopicExpanded ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+            {isTopicExpanded ? <ChevronRight size={24} className="text-[#DB6551]" /> : <ChevronLeft size={24} className="text-[#DB6551]" />}
           </button>
         </div>
 
@@ -566,9 +570,9 @@ const ChatbotPage: React.FC = () => {
             {selectedTopic ? (
               renderFAQContent()
             ) : (
-              <div className="p-6 text-center">
-                <h3 className="text-lg font-medium text-slate-500 mb-2">Select a Topic</h3>
-                <p className="text-slate-400">Choose a topic from the sidebar to view content</p>
+              <div className="p-8 text-center">
+                <h3 className="text-xl font-bold text-[#DB6551] mb-2">Select a Topic</h3>
+                <p className="text-[#E6896B] font-medium">Choose a topic from the sidebar to view content</p>
               </div>
             )}
           </div>
@@ -578,12 +582,12 @@ const ChatbotPage: React.FC = () => {
               <button
                 key={topic}
                 onClick={() => handleTopicClick(topic)}
-                className={`h-24 flex items-center justify-center cursor-pointer hover:bg-slate-50 transition-colors ${
-                  selectedTopic === topic ? 'bg-slate-100' : ''
+                className={`h-28 flex items-center justify-center cursor-pointer hover:bg-[#E6896B]/10 transition-all duration-300 border-l-4 ${
+                  selectedTopic === topic ? 'bg-[#E6896B]/20 border-[#DB6551]' : 'border-transparent hover:border-[#E6896B]/30'
                 }`}
               >
                 <span 
-                  className="transform -rotate-90 whitespace-nowrap text-slate-600 hover:text-blue-600 transition-colors"
+                  className="transform -rotate-90 whitespace-nowrap text-[#E6896B] hover:text-[#DB6551] transition-colors duration-300 font-bold"
                   style={{ transformOrigin: 'center' }}
                 >
                   {topic}

@@ -679,19 +679,19 @@ const PlacesSidebar: React.FC<PlacesSidebarProps> = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className={`fixed inset-y-0 right-0 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 flex ${
+    <div className={`fixed inset-y-0 right-0 h-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 flex ${
       isOpen ? 'translate-x-0' : 'translate-x-full'
     }`}
     style={{ width: '800px' }}>
       {/* First Column - Regions */}
-      <div className="w-20 border-r border-slate-200 bg-slate-50 flex flex-col">
-        <div className="p-4 border-b border-slate-200 flex items-center justify-center">
+      <div className="w-20 border-l-2 border-[#E6896B]/20 bg-gradient-to-b from-white to-[#E6896B]/5 flex flex-col">
+        <div className="p-4 border-b-2 border-[#E6896B]/20 flex items-center justify-center">
           <button
             onClick={onClose}
-            className="p-1 hover:bg-slate-200 rounded-full transition-colors"
+            className="p-2 hover:bg-[#E6896B]/10 rounded-full transition-all duration-300 hover:scale-110"
             aria-label="Close sidebar"
           >
-            <X size={20} className="text-slate-600" />
+            <X size={20} className="text-[#DB6551]" />
           </button>
         </div>
         
@@ -700,18 +700,18 @@ const PlacesSidebar: React.FC<PlacesSidebarProps> = ({ isOpen, onClose }) => {
             <button
               key={region.id}
               onClick={() => handleRegionClick(region.id)}
-              className={`w-full py-4 flex items-center justify-center hover:bg-slate-100 transition-colors ${
-                selectedRegion === region.id ? 'bg-slate-200' : ''
+              className={`w-full py-6 flex items-center justify-center hover:bg-[#E6896B]/10 transition-all duration-300 ${
+                selectedRegion === region.id ? 'bg-[#E6896B]/20 border-l-4 border-[#DB6551]' : ''
               }`}
             >
-              <div className="relative w-12 h-12 rounded-full overflow-hidden">
+              <div className="relative w-12 h-12 rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <img
                   src={region.image}
                   alt={region.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
                 {selectedRegion === region.id && (
-                  <ChevronRight size={16} className="absolute bottom-0 right-0 text-white bg-black/50 rounded-full p-1" />
+                  <ChevronRight size={16} className="absolute bottom-0 right-0 text-white bg-[#DB6551]/90 rounded-full p-1 animate-pulse" />
                 )}
               </div>
             </button>
@@ -721,9 +721,9 @@ const PlacesSidebar: React.FC<PlacesSidebarProps> = ({ isOpen, onClose }) => {
 
       {/* Second Column - Countries or Region Name */}
       {selectedRegion && (
-        <div className="w-64 border-r border-slate-200 bg-white flex flex-col">
-          <div className="p-4 border-b border-slate-200">
-            <h3 className="font-medium text-slate-800">
+        <div className="w-64 border-l-2 border-[#E6896B]/20 bg-white flex flex-col">
+          <div className="p-4 border-b-2 border-[#E6896B]/20">
+            <h3 className="font-bold text-[#DB6551] text-lg">
               {selectedRegionData?.name}
             </h3>
           </div>
@@ -733,13 +733,15 @@ const PlacesSidebar: React.FC<PlacesSidebarProps> = ({ isOpen, onClose }) => {
               <button
                 key={country.id}
                 onClick={() => handleCountryClick(country.id)}
-                className={`w-full px-4 py-3 text-left hover:bg-slate-50 transition-colors ${
-                  selectedCountry === country.id ? 'bg-slate-100' : ''
+                className={`w-full px-4 py-4 text-left hover:bg-[#E6896B]/10 transition-all duration-300 border-l-4 ${
+                  selectedCountry === country.id 
+                    ? 'bg-[#E6896B]/20 border-[#DB6551]' 
+                    : 'border-transparent hover:border-[#E6896B]/30'
                 }`}
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-700">{country.name}</span>
-                  <ChevronRight size={16} className="text-slate-500" />
+                  <span className="text-[#E6896B] font-semibold">{country.name}</span>
+                  <ChevronRight size={16} className="text-[#DB6551]" />
                 </div>
               </button>
             ))}
@@ -748,15 +750,15 @@ const PlacesSidebar: React.FC<PlacesSidebarProps> = ({ isOpen, onClose }) => {
       )}
 
       {/* Third Column - Cities or Places */}
-      <div className="flex-1 bg-slate-50 flex flex-col">
+      <div className="flex-1 bg-gradient-to-b from-white to-[#E6896B]/5 flex flex-col">
         {selectedRegion && (
-          <div className="p-4 border-b border-slate-200">
+          <div className="p-4 border-b-2 border-[#E6896B]/20">
             <div className="relative">
-              <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+              <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#E6896B]" />
               <input
                 type="text"
                 placeholder={selectedCountry ? "Search cities..." : "Search places..."}
-                className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 border-2 border-[#E6896B]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#DB6551] focus:border-[#DB6551] font-medium placeholder-[#E6896B]/60 transition-all duration-300"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -768,33 +770,33 @@ const PlacesSidebar: React.FC<PlacesSidebarProps> = ({ isOpen, onClose }) => {
           {selectedCountry && selectedCountryData ? (
             // Show cities when a country is selected
             <div>
-              <h3 className="text-lg font-medium text-slate-800 mb-4">
+              <h3 className="text-xl font-bold text-[#DB6551] mb-6">
                 Cities in {selectedCountryData.name}
               </h3>
-              <div className="grid gap-4">
+              <div className="grid gap-6">
                 {selectedCountryData.cities
                   .filter(city => 
                     city.name.toLowerCase().includes(searchQuery.toLowerCase())
                   )
                   .map((city, index) => (
-                    <div key={index} className="bg-white rounded-lg border border-slate-200 p-4 hover:shadow-md transition-shadow">
+                    <div key={index} className="bg-white rounded-2xl border-2 border-[#E6896B]/20 p-6 hover:shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#DB6551]/40">
                       <div className="flex items-center justify-between">
                         <div>
-                          <h4 className="font-medium text-slate-800 text-lg">{city.name}</h4>
-                          <p className="text-sm text-slate-600 mt-1">
+                          <h4 className="font-bold text-[#DB6551] text-xl">{city.name}</h4>
+                          <p className="text-sm text-[#E6896B] mt-2 font-medium">
                             {city.places.length} place{city.places.length !== 1 ? 's' : ''} to visit
                           </p>
                         </div>
-                        <ChevronRight size={20} className="text-slate-400" />
+                        <ChevronRight size={24} className="text-[#E6896B]" />
                       </div>
-                      <div className="mt-3 flex flex-wrap gap-2">
+                      <div className="mt-4 flex flex-wrap gap-2">
                         {city.places.slice(0, 3).map((place, i) => (
-                          <span key={i} className="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded">
+                          <span key={i} className="bg-[#E6896B]/10 text-[#DB6551] text-xs px-3 py-1.5 rounded-full font-semibold border border-[#E6896B]/20">
                             {place.name}
                           </span>
                         ))}
                         {city.places.length > 3 && (
-                          <span className="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded">
+                          <span className="bg-[#DB6551]/10 text-[#DB6551] text-xs px-3 py-1.5 rounded-full font-bold border border-[#DB6551]/20">
                             +{city.places.length - 3} more
                           </span>
                         )}
@@ -806,33 +808,34 @@ const PlacesSidebar: React.FC<PlacesSidebarProps> = ({ isOpen, onClose }) => {
           ) : selectedRegion && selectedRegionData ? (
             // Show trending places for the selected region
             <div>
-              <h3 className="text-lg font-medium text-slate-800 mb-4">
+              <h3 className="text-xl font-bold text-[#DB6551] mb-6">
                 Trending Places in {selectedRegionData.name}
               </h3>
-              <div className="grid gap-4">
+              <div className="grid gap-6">
                 {selectedRegionData.trendingPlaces
                   .filter(place => 
                     place.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     place.description.toLowerCase().includes(searchQuery.toLowerCase())
                   )
                   .map((place, index) => (
-                    <div key={index} className="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
-                      <div className="relative h-48 overflow-hidden">
+                    <div key={index} className="bg-white rounded-2xl border-2 border-[#E6896B]/20 overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#DB6551]/40">
+                      <div className="relative h-56 overflow-hidden">
                         <img 
                           src={place.image} 
                           alt={place.name}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                         />
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                          <h3 className="font-medium text-white text-lg">{place.name}</h3>
-                          <p className="text-white/90 text-sm">{place.city}, {place.country}</p>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                          <h3 className="font-bold text-white text-xl mb-1 drop-shadow-lg">{place.name}</h3>
+                          <p className="text-white/90 text-sm font-medium drop-shadow">{place.city}, {place.country}</p>
                         </div>
                       </div>
-                      <div className="p-4">
-                        <p className="text-sm text-slate-600 mb-3">{place.description}</p>
+                      <div className="p-6">
+                        <p className="text-sm text-[#E6896B] mb-4 leading-relaxed">{place.description}</p>
                         <div className="flex flex-wrap gap-2">
                           {place.tags.map((tag, i) => (
-                            <span key={i} className="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded">
+                            <span key={i} className="bg-[#E6896B]/10 text-[#DB6551] text-xs px-3 py-1.5 rounded-full font-semibold border border-[#E6896B]/20">
                               {tag}
                             </span>
                           ))}
@@ -843,9 +846,9 @@ const PlacesSidebar: React.FC<PlacesSidebarProps> = ({ isOpen, onClose }) => {
               </div>
             </div>
           ) : (
-            <div className="text-center p-6">
-              <h3 className="text-lg font-medium text-slate-500">Select a region</h3>
-              <p className="text-slate-400 mt-1">Click on a region to explore places</p>
+            <div className="text-center p-8">
+              <h3 className="text-xl font-bold text-[#DB6551] mb-2">Select a region</h3>
+              <p className="text-[#E6896B] font-medium">Click on a region to explore places</p>
             </div>
           )}
         </div>

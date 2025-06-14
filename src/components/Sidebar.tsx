@@ -28,7 +28,7 @@ interface ActivityCard {
 const activityCategories: ActivityCategory[] = [
   {
     id: 'individual',
-    icon: <User size={20} className="text-slate-700" />,
+    icon: <User size={20} className="text-[#DB6551]" />,
     activities: [
       {
         name: 'Eat',
@@ -46,7 +46,7 @@ const activityCategories: ActivityCategory[] = [
   },
   {
     id: 'couple',
-    icon: <Users size={20} className="text-slate-700" />,
+    icon: <Users size={20} className="text-[#DB6551]" />,
     activities: [
       {
         name: 'Date',
@@ -64,7 +64,7 @@ const activityCategories: ActivityCategory[] = [
   },
   {
     id: 'family',
-    icon: <Home size={20} className="text-slate-700" />,
+    icon: <Home size={20} className="text-[#DB6551]" />,
     activities: [
       {
         name: 'Entertainment',
@@ -178,19 +178,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
-    <div className={`fixed inset-y-0 left-0 h-full bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-50 flex ${
+    <div className={`fixed inset-y-0 left-0 h-full bg-white shadow-2xl transform transition-transform duration-300 ease-in-out z-50 flex ${
       isOpen ? 'translate-x-0' : '-translate-x-full'
     }`}
     style={{ width: '800px' }}>
       {/* First Column - Icons */}
-      <div className="w-20 border-r border-slate-200 bg-slate-50 flex flex-col">
-        <div className="p-4 border-b border-slate-200 flex items-center justify-center">
+      <div className="w-20 border-r-2 border-[#E6896B]/20 bg-gradient-to-b from-white to-[#E6896B]/5 flex flex-col">
+        <div className="p-4 border-b-2 border-[#E6896B]/20 flex items-center justify-center">
           <button
             onClick={onClose}
-            className="p-1 hover:bg-slate-200 rounded-full transition-colors"
+            className="p-2 hover:bg-[#E6896B]/10 rounded-full transition-all duration-300 hover:scale-110"
             aria-label="Close sidebar"
           >
-            <X size={20} className="text-slate-600" />
+            <X size={20} className="text-[#DB6551]" />
           </button>
         </div>
         
@@ -202,15 +202,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 setSelectedCategory(selectedCategory === category.id ? null : category.id);
                 setSelectedActivity(null);
               }}
-              className={`w-full py-4 flex items-center justify-center hover:bg-slate-100 transition-colors ${
-                selectedCategory === category.id ? 'bg-slate-200' : ''
+              className={`w-full py-6 flex items-center justify-center hover:bg-[#E6896B]/10 transition-all duration-300 ${
+                selectedCategory === category.id ? 'bg-[#E6896B]/20 border-r-4 border-[#DB6551]' : ''
               }`}
               aria-label={category.id}
             >
               <div className="flex flex-col items-center">
                 {category.icon}
                 {selectedCategory === category.id && (
-                  <ChevronRight size={16} className="mt-1 text-slate-500" />
+                  <ChevronRight size={16} className="mt-2 text-[#DB6551] animate-pulse" />
                 )}
               </div>
             </button>
@@ -220,9 +220,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
       {/* Second Column - Activities */}
       {selectedCategory && (
-        <div className="w-64 border-r border-slate-200 bg-white flex flex-col">
-          <div className="p-4 border-b border-slate-200">
-            <h3 className="font-medium text-slate-800">Activities</h3>
+        <div className="w-64 border-r-2 border-[#E6896B]/20 bg-white flex flex-col">
+          <div className="p-4 border-b-2 border-[#E6896B]/20">
+            <h3 className="font-bold text-[#DB6551] text-lg">Activities</h3>
           </div>
           
           <div className="flex-1 overflow-y-auto">
@@ -232,14 +232,16 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 <button
                   key={activity.name}
                   onClick={() => setSelectedActivity(selectedActivity === activity.name ? null : activity.name)}
-                  className={`w-full px-4 py-3 text-left hover:bg-slate-50 transition-colors ${
-                    selectedActivity === activity.name ? 'bg-slate-100' : ''
+                  className={`w-full px-4 py-4 text-left hover:bg-[#E6896B]/10 transition-all duration-300 border-l-4 ${
+                    selectedActivity === activity.name 
+                      ? 'bg-[#E6896B]/20 border-[#DB6551]' 
+                      : 'border-transparent hover:border-[#E6896B]/30'
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-slate-700">{activity.name}</span>
+                    <span className="text-[#E6896B] font-semibold">{activity.name}</span>
                     {selectedActivity === activity.name ? (
-                      <ChevronRight size={16} className="text-slate-500" />
+                      <ChevronRight size={16} className="text-[#DB6551]" />
                     ) : null}
                   </div>
                 </button>
@@ -249,15 +251,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       )}
 
       {/* Third Column - Content Area */}
-      <div className="flex-1 bg-slate-50 flex flex-col">
+      <div className="flex-1 bg-gradient-to-b from-white to-[#E6896B]/5 flex flex-col">
         {selectedCategory && (
-          <div className="p-4 border-b border-slate-200">
+          <div className="p-4 border-b-2 border-[#E6896B]/20">
             <div className="relative">
-              <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+              <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#E6896B]" />
               <input
                 type="text"
                 placeholder="Search..."
-                className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 border-2 border-[#E6896B]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#DB6551] focus:border-[#DB6551] font-medium placeholder-[#E6896B]/60 transition-all duration-300"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
@@ -269,8 +271,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           {selectedActivity ? (
             // Show sub-activities when an activity is selected
             <>
-              <h4 className="font-medium text-slate-800 mb-3">Sub Activities</h4>
-              <div className="flex flex-col gap-2">
+              <h4 className="font-bold text-[#DB6551] mb-4 text-lg">Sub Activities</h4>
+              <div className="flex flex-col gap-3">
                 {activityCategories
                   .find(c => c.id === selectedCategory)?.activities
                   .find(a => a.name === selectedActivity)?.subActivities
@@ -278,7 +280,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                   .map((subActivity) => (
                     <button
                       key={subActivity}
-                      className="w-full px-4 py-2 text-left text-sm bg-white rounded-md border border-slate-200 hover:bg-blue-50 hover:border-blue-200 transition-colors"
+                      className="w-full px-4 py-3 text-left text-sm bg-white rounded-xl border-2 border-[#E6896B]/20 hover:bg-[#E6896B]/10 hover:border-[#DB6551]/40 transition-all duration-300 font-medium text-[#E6896B] hover:text-[#DB6551] shadow-sm hover:shadow-md"
                     >
                       {subActivity}
                     </button>
@@ -288,42 +290,39 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           ) : selectedCategory ? (
             // Show preview cards when only category is selected
             <>
-              <h4 className="font-medium text-slate-800 mb-3">Featured Activities</h4>
-              <div className="grid gap-4">
+              <h4 className="font-bold text-[#DB6551] mb-4 text-lg">Featured Activities</h4>
+              <div className="grid gap-6">
                 {categoryPreviews[selectedCategory]
                   .filter(card => 
                     card.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     card.description.toLowerCase().includes(searchQuery.toLowerCase())
                   )
                   .map((card, index) => (
-                    <div key={index} className="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
-                      <div className="relative h-40 overflow-hidden">
+                    <div key={index} className="bg-white rounded-2xl border-2 border-[#E6896B]/20 overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-1 hover:border-[#DB6551]/40">
+                      <div className="relative h-48 overflow-hidden">
                         <img 
                           src={card.image} 
                           alt={card.title}
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                         />
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                          <h3 className="font-medium text-white">{card.title}</h3>
-                          <p className="text-xs text-white/80 mt-1">{card.path}</p>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <div className="absolute bottom-0 left-0 right-0 p-4">
+                          <h3 className="font-bold text-white text-lg drop-shadow-lg">{card.title}</h3>
+                          <p className="text-xs text-white/80 mt-1 font-medium drop-shadow">{card.path}</p>
                         </div>
                       </div>
                       <div className="p-4">
-                        <p className="text-sm text-slate-600">{card.description}</p>
-                        <div className="mt-3 flex flex-wrap gap-2">
+                        <p className="text-sm text-[#E6896B] mb-3 leading-relaxed">{card.description}</p>
+                        <div className="flex flex-wrap gap-2 mb-3">
                           {card.tags.map((tag, i) => (
-                            <span key={i} className="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded">
+                            <span key={i} className="bg-[#E6896B]/10 text-[#DB6551] text-xs px-3 py-1.5 rounded-full font-semibold border border-[#E6896B]/20">
                               {tag}
                             </span>
                           ))}
                         </div>
-                        <div className="mt-3 flex justify-between items-center">
-                          <div className="text-xs text-slate-500">
-                            Duration: {card.duration}
-                          </div>
-                          <div className="text-xs text-slate-500">
-                            Frequency: {card.frequency}
-                          </div>
+                        <div className="flex justify-between items-center text-xs text-[#E6896B] font-semibold">
+                          <div>Duration: {card.duration}</div>
+                          <div>Frequency: {card.frequency}</div>
                         </div>
                       </div>
                     </div>
@@ -334,9 +333,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
             // Show empty state when nothing is selected
             <div className="flex-1 flex items-center justify-center">
               <div className="text-center p-6">
-                <Search size={40} className="mx-auto text-slate-300 mb-3" />
-                <h3 className="text-lg font-medium text-slate-500">Select a category</h3>
-                <p className="text-slate-400 mt-1">Click on an icon to view activities</p>
+                <Search size={48} className="mx-auto text-[#E6896B]/40 mb-4" />
+                <h3 className="text-xl font-bold text-[#DB6551] mb-2">Select a category</h3>
+                <p className="text-[#E6896B] font-medium">Click on an icon to view activities</p>
               </div>
             </div>
           )}
